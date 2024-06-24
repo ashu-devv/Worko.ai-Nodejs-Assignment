@@ -72,7 +72,7 @@ This Node.js project Assignment manages users using MongoDB with Mongoose. It pr
 
 ## Basic Authentication
 
-- All API endpoints require basic authentication using the `Authorization` header with a value of `SECRET_KEY` written in `.env` file.
+- All API endpoints require basic authentication using the `Authorization` header with a value of `SECRET_KEY` in `.env` file.
 
 
 ## Additional Notes
@@ -80,3 +80,54 @@ This Node.js project Assignment manages users using MongoDB with Mongoose. It pr
 - Ensure MongoDB is running and accessible via the provided `MONGODB_URI`.
 - Ensure passing the correct `SECRET_KEY`as set in `.env` file in the authorization header.
 - Ensure there is no typing or spelling mistake in passing the key-values to api endpoints.
+
+
+## Tests
+
+### Test Descriptions
+
+The project includes tests for controllers, routes, and services to ensure the API functions correctly.
+
+#### User Controller Tests
+
+##### GET `/worko/user`
+
+- **Description**: Tests retrieving all users from the database.
+- **Expected Result**: Should return a status of 200 and an array of users.
+
+##### POST `/worko/user`
+
+- **Description**: Tests creating a new user.
+- **Expected Result**: Should return a status of 201 and the details of the created user.
+
+#### User Routes Tests
+
+##### GET `/worko/user`
+
+- **Description**: Tests retrieving all users from the database.
+- **Expected Result**: Should return a status of 200 and an array of users.
+
+##### POST `/worko/user`
+
+- **Description**: Tests creating a new user.
+- **Expected Result**: Should return a status of 201 and the details of the created user.
+
+#### User Service Tests
+
+##### createUser
+
+- **Description**: Tests creating a new user through the service layer.
+- **Expected Result**: Should create a new user successfully.
+
+##### getUsers
+
+- **Description**: Tests retrieving all users through the service layer.
+- **Expected Result**: Should retrieve all users successfully.
+
+### Running Tests
+
+To run the tests, use the following command:
+```
+     npm test
+     ```
+

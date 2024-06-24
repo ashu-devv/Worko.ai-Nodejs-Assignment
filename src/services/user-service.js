@@ -9,10 +9,6 @@ async function createUser(userData) {
         return user;
     } catch (error) {
         console.error('Error creating user:', error);
-        if (error.name === 'ValidationError') {
-            let explanations = Object.values(error.errors).map((val) => val.message);
-            throw new AppError(explanations, StatusCodes.BAD_REQUEST);
-        }
         throw new AppError('Cannot create a new user', StatusCodes.INTERNAL_SERVER_ERROR);
     }
 }

@@ -1,27 +1,26 @@
 const { userService } = require('../services');
 const { StatusCodes } = require('http-status-codes');
 const { SuccessResponse, ErrorResponse } = require('../Utils/common');
+const {Logger} = require('../../src/config')
 
 /**
  * POST: /worko/user/
  * req-body { email: 'user@example.com', name: 'John Doe', age: 30, city: 'New York', zipCode: '10001' }
  */
 async function createUser(req, res) {
-    try {
-        const user = await userService.createUser({
-            email: req.body.email,
-            name: req.body.name,
-            age: req.body.age,
-            city: req.body.city,
-            zipCode: req.body.zipCode
-        });
-        SuccessResponse.data = user;
-        return res.status(StatusCodes.CREATED).json(SuccessResponse);
+        try {
+            const user = await userService.createUser(req.body);
+            console.log('User created:', user);
+            res.status(201).json({
+              status: 'success',
+              data: user,
+            });
     } catch (error) {
+        Logger.error(`Error creating user: ${err.message}`);
         ErrorResponse.error = error;
         return res.status(error.statusCode || StatusCodes.INTERNAL_SERVER_ERROR).json(ErrorResponse);
     }
-}
+    }
 
 /**
  * GET: /worko/user/

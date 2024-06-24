@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "dev": "npx nodemon src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/index.js",
+    "test": "nyc mocha --require @babel/register --timeout 5000 'test/controllers/*.test.js' 'test/routes/*.test.js' 'test/services/*.test.js'",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "author": "Ashutosh Shukla",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "http-status-codes": "^2.3.0",
     "joi": "^17.13.3",
@@ -22,8 +23,18 @@
     "winston": "^3.13.0"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.24.7",
+    "@babel/register": "^7.24.6",
+    "chai": "^4.4.1",
+    "chai-http": "^4.4.0",
+    "dotenv": "^16.4.5",
     "jest": "^29.7.0",
+    "mocha": "^10.4.0",
     "nodemon": "^3.1.4",
-    "supertest": "^7.0.0"
+    "nyc": "^17.0.0",
+    "sinon": "^18.0.0",
+    "supertest": "^7.0.0",
+    "webpack": "^5.92.1",
+    "webpack-cli": "^5.1.4"
   }
 }

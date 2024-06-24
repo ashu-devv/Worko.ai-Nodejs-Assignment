@@ -12,8 +12,13 @@ class CrudRepository {
     async create(data) {
         try {
             const response = await this.model.create(data);
-            return response;
+            return response; 
         } catch (error) {
+            if (error.name === 'ValidationError') {
+                const validationErrors = Object.values(error.errors).map(err => err.message);
+                throw new AppError(`Validation failed: ${validationErrors.join(', ')}`, 400);
+              }
+            console.error('Error details:', error);
             throw new AppError('Failed to create resource', 500);
         }
     }
